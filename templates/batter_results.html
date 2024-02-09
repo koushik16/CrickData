@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Batter Details</title>
+    <style>
+        body {
+    background-image: url('static/bg.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding-top: 20px;
+    margin: 0; 
+}
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 50px;
+            width: 20%; 
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.8;
+             max-height: 100%; 
+    overflow-y: auto; 
+        }
+
+        h2 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            display: inline-block;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    {% if batters %}
+    <div class="container">
+    <h2>Batter Details</h2>
+    
+                <p>Batter: {{ batters[0]['Batter'] }}</p>
+                <p>Batter Balls Faced: {{ batters[0]['BatterBallsFaced'] }}</p>
+                <p>Player Out Runs: {{ batters[0]['PlayerOutRuns'] }}</p>
+                <p>Player out Balls Faced: {{ batters[0]['PlayerOutBallsFaced'] }}</p>
+                <div class="mt-3">
+                    <a href="/guest" class="btn btn-secondary">Go Back</a>
+                </div>
+    </div>
+
+    {% else %}
+        <div class="container">
+        <h2>Batter Details</h2>
+        <p>No details found for the Batter.</p>
+        <div class="mt-3">
+            <a href="/guest" class="btn btn-secondary">Go Back</a>
+        </div>
+    </div>
+    {% endif %}
+    </div>
+</body>
+</html>

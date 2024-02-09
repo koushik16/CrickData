@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guest Access - Search</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+    background-image: url('static/bg.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding-top: 20px;
+    margin: 0;
+}
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 50px;
+            width: 60%; 
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9; 
+             max-height: 100%;
+    overflow-y: auto; 
+        }
+
+        h2 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            display: inline-block;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button.btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        button.btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        button.btn-primary:hover,
+        button.btn-secondary:hover {
+            opacity: 0.8;
+        }
+    </style>
+    <script>
+        function showForm() {
+            var searchType = document.getElementById("searchType").value;
+            document.getElementById("formMatchID").style.display = (searchType == "matchID") ? "block" : "none";
+            document.getElementById("formTeamName").style.display = (searchType == "teamName") ? "block" : "none";
+            document.getElementById("formBatterName").style.display = (searchType == "batterName") ? "block" : "none";
+            document.getElementById("formBowlerName").style.display = (searchType == "bowlerName") ? "block" : "none";
+            document.getElementById("formBallByBall").style.display = (searchType == "ballByBall") ? "block" : "none";
+        }
+    </script>
+    
+</head>
+<body style="background-image: url('static/bg.avif'); background-size: cover; background-repeat: no-repeat;" class="bg-light">
+
+<div class="container">
+    <h2>Search for Match Details</h2>
+
+    <div class="form-group">
+        <select id="searchType" class="form-control" onchange="showForm()">
+            <option value="matchID">Search by Match ID</option>
+            <option value="teamName">Search by Team Name</option>
+            <option value="batterName">Search by Batter Name</option>
+            <option value="bowlerName">Search by Bowler Name</option>
+            <option value="ballByBall">Search Ball-by-Ball Details</option>
+        </select>
+    </div>
+
+    <div id="formMatchID">
+        <form action="/search_match" method="post">
+            <div class="form-group">
+                <label for="searchMatchID">Match ID:</label>
+                <input type="number" id="searchMatchID" name="searchMatchID" class="form-control" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Search">
+        </form>
+    </div>
+
+    <div id="formTeamName" style="display: none;">
+        <form action="/search_team" method="post">
+            <div class="form-group">
+                <label for="searchTeamName">Team Name:</label>
+                <input type="text" id="searchTeamName" name="searchTeamName" class="form-control" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Search">
+        </form>
+    </div>
+
+    <div id="formBatterName" style="display:none;">
+        <form action="/search_batter" method="post">
+            <div class="form-group">
+                <label for="searchBatterName">Batter Name:</label>
+                <input type="text" id="searchBatterName" name="searchBatterName" class="form-control" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Search">
+        </form>
+    </div>
+
+    <div id="formBowlerName" style="display:none;">
+        <form action="/search_bowler" method="post">
+            <div class="form-group">
+                <label for="searchBowlerName">Bowler Name:</label>
+                <input type="text" id="searchBowlerName" name="searchBowlerName" class="form-control" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Search">
+        </form>
+    </div>
+
+    <div id="formBallByBall" style="display:none;">
+        <form action="/search_ballbyball" method="post">
+            <div class="form-group">
+                <label for="searchBallByBallMatchID">Match ID:</label>
+                <input type="number" id="searchBallByBallMatchID" name="searchBallByBallMatchID" class="form-control" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Search">
+        </form>
+    </div>
+    <div class="mt-3">
+        <a href="/login" class="btn btn-secondary">Go Back</a>
+    </div>
+</div>
+</body>
+</html>

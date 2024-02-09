@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add or Update Match</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       
+ body {
+    background-image: url('static/bg.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding-top: 20px;
+    margin: 0; 
+}
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 50px;
+            width: 60%; 
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9; 
+             max-height: 90%; 
+    overflow-y: auto; 
+        }
+
+        h2 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            display: inline-block;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button.btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        button.btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        button.btn-primary:hover,
+        button.btn-secondary:hover {
+            opacity: 0.8;
+        }
+    </style>
+    <script type="text/javascript">
+        function toggleForm() {
+            var action = document.getElementById("actionSelect").value;
+            document.getElementById("addMatchForm").style.display = (action == "add") ? "block" : "none";
+            document.getElementById("updateMatchForm").style.display = (action == "update") ? "block" : "none";
+            document.getElementById("deleteMatchForm").style.display = (action == "delete") ? "block" : "none";
+        }
+    </script>
+    
+     <style>
+        body {
+            background-image: url('static/bg.avif'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh; 
+            padding-top: 20px; 
+        }
+        .login-form {
+            max-width: 300px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="mb-4">Add or Update Match</h2>
+
+  
+    <div class="form-group">
+        <select id="actionSelect" onchange="toggleForm()" class="form-control">
+            <option value="add">Add Match</option>
+            <option value="update">Update Target Score</option>
+            <option value="delete">Delete Information</option>
+        </select>
+    </div>
+
+  
+    <div id="addMatchForm" style="display:block;">
+        <form action="/add_match" method="post">
+            
+            <div class="form-group">
+                <label for="matchID">Match ID:</label>
+                <input type="number" id="matchID" name="matchID" class="form-control" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" name="date" class="form-control" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="venue">Venue:</label>
+                <input type="text" id="venue" name="venue" class="form-control" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="batFirst">Batting First:</label>
+                <input type="text" id="batFirst" name="batFirst" class="form-control" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="batSecond">Batting Second:</label>
+                <input type="text" id="batSecond" name="batSecond" class="form-control" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="targetScore">Target Score:</label>
+                <input type="number" id="targetScore" name="targetScore" class="form-control" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="winner">Winner:</label>
+                <input type="text" id="winner" name="winner" class="form-control" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="chasedSuccessfully">Chased Successfully:</label>
+                <select id="chasedSuccessfully" name="chasedSuccessfully" class="form-control" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <div id="updateMatchForm" style="display:none;">
+        
+           <form action="/update_match" method="post">
+            <div class="form-group">
+                <label for="matchID">Match ID:</label>
+                <input type="number" id="matchID" name="matchID" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="newTargetScore">New Target Score:</label>
+                <input type="number" id="newTargetScore" name="newTargetScore" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Target Score</button>
+        </form>
+    </div>
+    
+    <div id="deleteMatchForm" style="display:none;">
+    <form action="/delete_match" method="post">
+        <label for="deleteMatchID">Match ID to Delete:</label><br>
+        <input type="number" id="deleteMatchID" name="deleteMatchID" required><br>
+
+       
+        <button type="submit" value= "Delete Match" class="btn btn-primary">Delete Match</button>
+    </form>
+</div>
+    
+    
+   
+    <div class="mt-3">
+        <a href="/login" class="btn btn-secondary">Go Back</a>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy6p8HbD6DvL3z9xnqU/0flRVo4t7IpF" crossorigin="anonymous"></script>
+
+</body>
+</html>
